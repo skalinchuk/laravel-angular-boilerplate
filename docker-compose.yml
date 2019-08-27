@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  php-apache:
+    container_name: php-apache
+    build: .
+    ports:
+      - "80:80"
+    restart: always
+    command: "bash /var/www/start.sh"
+    volumes:
+      - .:/var/www:rw,delegated
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_DB: test_task
+      POSTGRES_PASSWORD: p@ssword
